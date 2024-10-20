@@ -20,7 +20,7 @@ python --version
 # Python 3.12.4
 ```
 
-Start playing around
+Start playing around => check [workbench for local dev](workbench_for_local_dev.py)
 
 ```python
 async with Cbox.connected_to(host) as cbox:
@@ -88,4 +88,5 @@ If you have this can of controller then you can install a connbox and use this p
 
 ## Developer's corner
 
+* [How to contribute](doc/contributing.md)
 * [About Connbox protocol](doc/cboxProtcol.md)
