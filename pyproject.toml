@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "cbox"
+version = "0.1.0"
+description = "This is a service to connect and interact with a connbox for Pellet stoves (Palazetti, Jotul)"
+authors = ["Sylvain Daclin <706379+sdaclin@users.noreply.github.co>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+aiohttp = "^3.10.9"
+pytest-asyncio = "^0.24.0"
+pytest-aiohttp = "^1.0.5"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
