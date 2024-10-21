@@ -1,3 +1,5 @@
+![CI](https://github.com/sdaclin/cbox/actions/workflows/ci.yml/badge.svg?event=push)
+
 # Cbox
 
 This project provides an API to interact through http with a `Connection Box` (a.k.a `connBox` or `cBox`) available in your LAN
