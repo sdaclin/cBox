@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-aiohttp = "^3.10.9"
+aiohttp = "^3.10.8"
 pytest-asyncio = "^0.24.0"
 pytest-aiohttp = "^1.0.5"
 coverage = "^7.6.4"
