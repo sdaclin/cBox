@@ -47,6 +47,8 @@ class CboxInfo:
     """Class for keeping track of Cbox info as returned by the cBox API"""
     timestamp: datetime = datetime.now()
 
+    mac: str = '00:00:00:00:00:00'
+
     status: StoveStatus = StoveStatus.OFF
 
     fanSetpoint: FanStatus = FanStatus.OFF
@@ -65,6 +67,7 @@ class CboxInfo:
     def __repr__(self) -> str:
         return json.dumps({
             'timestamp': str(self.timestamp),
+            'mac': self.mac,
             'globalStatus': self.status.name,
             'fanSetpoint': self.fanSetpoint.name,
             'powerSetpoint': self.powerSetpoint,
@@ -80,6 +83,7 @@ class CboxInfo:
 
     def from_dict(dict: dict) -> 'CboxInfo':
         return CboxInfo(timestamp=datetime.fromtimestamp(dict['INFO']['TS']),
+                        mac=dict['DATA']['MAC'],
                         status=StoveStatus(dict['DATA']['STATUS']),
                         fanSetpoint=FanStatus(dict['DATA']['F2L']),
                         powerSetpoint=dict['DATA']['PWR'],

@@ -24,7 +24,7 @@ async def cbox(simulator: CboxSimulator, aiohttp_client) -> Cbox:
 
 async def test_cbox_should_fetch_infos(cbox: Cbox):
     res = await cbox.fetch_info()
-    assert res == CboxInfo(datetime.fromtimestamp(1728725454),
+    assert res == CboxInfo(datetime.fromtimestamp(1728725454),'FF:FF:FF:FF:FF:FF',
                            StoveStatus.OFF, FanStatus.OFF, 1, 19, 24.8, 0, 133, 0, 49, 48, date(2023, 7, 26))
 
 async def test_cbox_should_change_status(cbox: Cbox):
