@@ -1,8 +1,7 @@
 from aiohttp import web
-from asyncio import new_event_loop
 from enum import Enum
 import re
-from cbox.model import CboxInfo, StoveStatus, FanStatus
+from cbox.connbox import CboxInfo, StoveStatus, FanStatus
 
 
 class CboxSimulator:

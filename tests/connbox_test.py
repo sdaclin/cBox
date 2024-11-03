@@ -1,14 +1,9 @@
+from datetime import date, datetime
+
 import pytest
-import asyncio
 
-from aiohttp import web
-
-from cbox.connbox import Cbox
-
+from cbox.connbox import Cbox, CboxInfo, FanStatus, StoveStatus
 from tests.connbox_simulator import CboxSimulator
-
-from datetime import datetime, date
-from cbox.model import CboxInfo, StoveStatus, FanStatus
 
 
 @pytest.fixture

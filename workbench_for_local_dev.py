@@ -2,14 +2,13 @@ import asyncio
 import logging
 import sys
 
-from cbox.connbox import Cbox, CboxInfo
-from cbox.model import FanStatus, StoveStatus
+from cbox.connbox import Cbox, FanStatus
 
 
 async def main():
     # Configure the logger to be verbose with the cbox module
     logging.basicConfig(stream=sys.stdout, level=logging.INFO)
-    logging.getLogger('cbox.connbox').setLevel(logging.DEBUG)
+    logging.getLogger("cbox.connbox").setLevel(logging.DEBUG)
 
     # Define your cbox host (could be an ip address like 192.168.0.14)
     host: str = "connbox"
@@ -27,5 +26,6 @@ async def main():
 
         # Fetch changed cbox info
         print(await cbox.fetch_info())
+
 
 asyncio.run(main())
