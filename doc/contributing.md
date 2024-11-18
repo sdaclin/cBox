@@ -12,9 +12,10 @@ They are more than welcome :love:
 
 ## Good to know
 
-Here are some interesting readings around this repo : 
+Here are some interesting readings around this repo :
 
 * [Poetry](https://python-poetry.org/) for packaging and dependency management
+* [Ruff](https://github.com/astral-sh/ruff) for formatting and linting
 * [Python - asyncio](https://realpython.com/async-io-python/) for async support when doing i/o like `http` requests
 * [Python - aiohttp](https://docs.aiohttp.org/en/stable/) the lib used for `http` support
 * [Python - pytest-asyncio](https://pytest-asyncio.readthedocs.io/en/latest/index.html) to handle `pytests` in an async way
