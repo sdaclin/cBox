@@ -3,6 +3,7 @@ import logging
 from dataclasses import dataclass
 from datetime import date, datetime
 from enum import Enum
+from typing import Self
 
 from aiohttp import ClientResponse, ClientSession
 
@@ -119,9 +120,10 @@ class Cbox:
     async def __aexit__(self, exc_type, exc_value, exc_tb) -> None:
         await self.client_session.close()
 
-    def connected_to(host: str) -> "Cbox":
+    @classmethod
+    def connected_to(cls, host: str) -> Self:
         """Return a Cbox connected to given host"""
-        return Cbox(ClientSession(f"http://{host}/"))
+        return cls(ClientSession(f"http://{host}/"))
 
     async def fetch_info(self) -> CboxInfo:
         """Fetch all the general info in one call"""
