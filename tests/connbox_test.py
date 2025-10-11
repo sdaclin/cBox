@@ -20,13 +20,13 @@ async def cbox(simulator: CboxSimulator, aiohttp_client) -> Cbox:
 async def test_cbox_should_fetch_infos(cbox: Cbox):
     res = await cbox.fetch_info()
     assert res == CboxInfo(datetime.fromtimestamp(1728725454),'FF:FF:FF:FF:FF:FF',
-                           StoveStatus.OFF, FanStatus.OFF, 1, 19, 24.8, 0, 133, 0, 49, 48, date(2023, 7, 26))
+                           StoveStatus.OFF, FanStatus.OFF, 1, 19, 24.8, 0, 133, 0, 49, 42, 48, date(2023, 7, 26))
 
-async def test_cbox_should_change_status(cbox: Cbox):
-    await cbox.change_status(Cbox.Status.ON) # Only the simulator directly switch from OFF to BURNING
+async def test_cbox_should_power_on(cbox: Cbox):
+    await cbox.power_on() # Only the simulator directly switch from OFF to BURNING
     assert (await cbox.fetch_info()).status == StoveStatus.BURNING
 
-    await cbox.change_status(Cbox.Status.OFF) # Only the simulator directly switch from BURNING to OFF
+    await cbox.power_off() # Only the simulator directly switch from BURNING to OFF
     assert (await cbox.fetch_info()).status == StoveStatus.OFF
 
 async def test_cbox_should_change_temperature_setpoint(cbox:Cbox):
