@@ -17,15 +17,20 @@ async def main():
     async with Cbox.connected_to(host) as cbox:
         # Fetch current cbox info
         print(await cbox.fetch_info())
-
+        #See => https://github.com/Domochip/WPalaControl
+        #print(await cbox.get_info('STDT'))
+        #print(await cbox.get_info('STAT'))
+        #print(await cbox.get_info('CNTR'))
+        #print(await cbox.get_info('MDVE'))
+        #print(await cbox.bkp())
         # Change cbox settings
-        await cbox.change_status(Cbox.Status.OFF)
-        await cbox.change_fan_setpoint(FanStatus.AUTO)
-        await cbox.change_temperature_setpoint(19)
-        await cbox.change_power_setpoint(4)
+        # await cbox.change_status(Cbox.Status.OFF)
+        # await cbox.change_fan_setpoint(FanStatus.AUTO)
+        # await cbox.change_temperature_setpoint(19)
+        # await cbox.change_power_setpoint(4)
 
         # Fetch changed cbox info
-        print(await cbox.fetch_info())
+        #print(await cbox.fetch_info())
 
 
 asyncio.run(main())
