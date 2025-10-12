@@ -2,7 +2,7 @@ import asyncio
 import logging
 import sys
 
-from cbox.connbox import Cbox, FanStatus
+from connbox.connbox import Cbox, FanStatus
 
 
 async def main():

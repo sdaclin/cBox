@@ -2,7 +2,7 @@ from datetime import date, datetime
 
 import pytest
 
-from cbox.connbox import Cbox, CboxInfo, FanStatus, StoveStatus
+from connbox.connbox import Cbox, CboxInfo, FanStatus, StoveStatus
 from tests.connbox_simulator import CboxSimulator
 
 

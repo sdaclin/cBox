@@ -1,7 +1,7 @@
 from aiohttp import web
 from enum import Enum
 import re
-from cbox.connbox import CboxInfo, StoveStatus, FanStatus
+from connbox.connbox import CboxInfo, StoveStatus, FanStatus
 
 
 class CboxSimulator:
