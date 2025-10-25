@@ -103,7 +103,7 @@ class CboxInfo:
             t3=dict["DATA"]["T3"],
             t4=dict["DATA"]["T4"],
             t5=dict["DATA"]["T5"],
-            pelletQttyTotalKg=dict['DATA']['PQT'],
+            pelletQttyTotalKg=dict["DATA"]["PQT"],
             firmwareVersion=int(dict["DATA"]["VER"]),
             firmwareDate=date.fromisoformat(dict["DATA"]["FWDATE"]),
         )
@@ -139,8 +139,8 @@ class Cbox:
             if response_json["SUCCESS"] is not True:
                 raise Exception("Request response is not SUCCESS")
             return CboxInfo.from_dict(response_json)
-        
-    async def get_info(self, cmd:str) -> None:
+
+    async def get_info(self, cmd: str) -> None:
         """Fetch cmd"""
         logger.debug(f"Fetch cmd {cmd}")
         async with self.client_session.get(self.path, params=[("cmd", f"GET {cmd}")]) as response:
@@ -150,10 +150,10 @@ class Cbox:
             if response_json["SUCCESS"] is not True:
                 raise Exception("Request response is not SUCCESS")
             return response_json
-        
+
     async def bkp(self) -> None:
         """Backup cmd"""
-        cmd="BKP PARM JSON"
+        cmd = "BKP PARM JSON"
         logger.debug(f"Backp cmd {cmd}")
         async with self.client_session.get(self.path, params=[("cmd", f"{cmd}")]) as response:
             if response.status != 200:
@@ -174,7 +174,6 @@ class Cbox:
         logger.debug("Power off")
         async with self.client_session.get(self.path, params=[("cmd", "CMD off")]) as response:
             await Cbox._check_response_success(response)
-
 
     async def change_temperature_setpoint(self, temperature: int) -> None:
         """Change temperature setpoint"""
@@ -201,9 +200,7 @@ class Cbox:
 
     async def _check_response_success(response: ClientResponse):
         if response.status != 200:
-            raise Exception(f"Got unexpected response status {
-                            response.status}")
+            raise Exception(f"Got unexpected response status {response.status}")
         response_json = await response.json()
         if response_json["SUCCESS"] is not True:
-            raise Exception(f"Request response is not SUCCESS => {
-                            json.dumps(response_json)}")
+            raise Exception(f"Request response is not SUCCESS => {json.dumps(response_json)}")

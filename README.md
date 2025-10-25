@@ -15,11 +15,10 @@ This project provides an API to interact through http with a `Connection Box` (a
 
 ## How to
 
-Check your python installation, `python 3.12.+` is required
+Check your python installation, `python 3.13.+` is required
 
 ```sh
 python --version
-# Python 3.12.4
 ```
 
 Start playing around => check [workbench for local dev](workbench_for_local_dev.py)
@@ -54,11 +53,11 @@ DEBUG:cbox.connbox:Fetch infos
 
 ## Resources
 
-### Connobx related
+### Connbox related
 
 [Connbox Jotul PDF](https://www.jotul.fr/sites/french/files/products/MANUAL_PELLET_CONNEXION_BOX_FR_DE_NL_ES_EN_IT_PL_P02.pdf)
 
-[Connbox Palazetti](https://www.palazzetti-boutique-lyon.fr/nouveautes/la-nouvelle-connection-box-palazzetti/)
+[Connbox Palazzetti](https://www.palazzetti-boutique-lyon.fr/nouveautes/la-nouvelle-connection-box-palazzetti/)
 
 [Application Jotul android Pellet control](https://www.jotul.fr/sites/french/files/products/MANUAL_PELLET_CONNEXION_BOX_FR_DE_NL_ES_EN_IT_PL_P02.pdf)
 
@@ -81,7 +80,7 @@ If you have this can of controller then you can install a connbox and use this p
 * Grade A integration with HomeAssistant
 * MQTT support
 
-[hass-palazetti](https://github.com/Vost3/hass-palazzetti)
+[hass-Palazzetti](https://github.com/Vost3/hass-palazzetti)
 
 * All in one HomeAssistant integration
 * Written in Python
@@ -90,5 +89,5 @@ If you have this can of controller then you can install a connbox and use this p
 
 ## Developer's corner
 
-* [How to contribute](doc/contributing.md)
+* [How to contribute](DEVELOPMENT.md)
 * [About Connbox protocol](doc/cboxProtcol.md)

@@ -1,24 +1,73 @@
-[tool.poetry]
-name = "cbox"
-version = "0.1.0"
-description = "This is a service to connect and interact with a connbox for Pellet stoves (Palazetti, Jotul)"
-authors = ["Sylvain Daclin <706379+sdaclin@users.noreply.github.co>"]
-readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.12"
-aiohttp = "^3.10.8"
-pytest-asyncio = "^0.24.0"
-pytest-aiohttp = "^1.0.5"
-coverage = "^7.6.4"
-ruff = "^0.7.2"
-
-[tool.poetry.group.test.dependencies]
-pytest = "^8.3.3"
-
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["uv_build>=0.9.4,<0.10.0"]
+build-backend = "uv_build"
+
+[project]
+name = "connbox"
+version = "0.1.0"
+requires-python = ">=3.13"
+description = "This is a service to connect and interact with a connbox for Pellet stoves (Palazzetti, Jotul)"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Sylvain Daclin" }
+]
+keywords = ["pellet", "stove", "connbox", "palazzetti", "jotul", "fumis", "iot"]
+homepage = "https://github.com/sdaclin/cbox"
+repository = "https://github.com/sdaclin/cbox"
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Home Automation",
+]
+
+[project.packages]
+find = { where = ["src"] }
+
+dependencies = [
+    "aiohttp>=3.10.8",
+]
+
+[dependency-groups]
+dev = [
+    "coverage>=7.6.4",
+    "pytest>=8.4.2",
+    "pytest-aiohttp>=1.0.5",
+    "pytest-asyncio>=0.24",
+]
+lint = [
+    "ruff>=0.14.0",
+]
 
 [tool.ruff]
 line-length = 120
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = [
+    "tests",
+]
+pythonpath = [
+    "src",
+]
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["*/tests/*", "*/test_*.py"]
+
+[tool.coverage.report]
+precision = 2
+show_missing = true
+skip_covered = false
+fail_under = 80.0
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
