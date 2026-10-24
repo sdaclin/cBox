@@ -1,7 +1,9 @@
-from aiohttp import web
-from enum import Enum
 import re
-from connbox.connbox import CboxInfo, StoveStatus, FanStatus
+from enum import Enum
+
+from aiohttp import web
+
+from connbox.connbox import CboxInfo, FanStatus, StoveStatus
 
 
 class CboxSimulator:
@@ -10,8 +12,6 @@ class CboxSimulator:
     POWR_PATTERN = re.compile(r"SET POWR (\d)")
     RFAN_PATTERN = re.compile(r"SET RFAN (\d)")
 
-    cboxInfo: CboxInfo = CboxInfo()
-
     class Command(Enum):
         CMD = (0,)
         SETP = (1,)
@@ -19,6 +19,8 @@ class CboxSimulator:
         RFAN = 4
 
     def __init__(self) -> None:
+        self.cboxInfo: CboxInfo = CboxInfo()
+        self.status_code_override: int | None = None
         self.app: web.Application = web.Application()
         self.app.add_routes([web.get("/cgi-bin/sendmsg.lua", self.__send_msg_endpoint)])
 
@@ -72,7 +74,9 @@ class CboxSimulator:
                     "SETP": self.cboxInfo.temperatureSetpoint,
                     "APLTS": "2024-10-12 11:31:48",
                     "BECO": 0,
-                    "STATUS": self.cboxInfo.status.value,
+                    "STATUS": self.cboxInfo.status.value
+                    if self.status_code_override is None
+                    else self.status_code_override,
                     "T3": 133,
                     "T1": 24.8,
                     "PUMP": 0,
@@ -100,10 +104,8 @@ class CboxSimulator:
         return web.json_response({"SUCCESS": True})
 
     def __simulate_command_temperature_setpoint(self, temperature: int) -> web.Response:
-        if temperature < 12:
-            temperature = 12
-        if temperature > 51:
-            temperature = 51
+        temperature = max(temperature, 12)
+        temperature = min(temperature, 51)
         self.cboxInfo.temperatureSetpoint = temperature
         return web.json_response({"SUCCESS": True})
 

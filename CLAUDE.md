@@ -82,16 +82,20 @@ The main `Cbox` class provides async context manager support for connecting to a
 
 **Key Classes:**
 - `Cbox`: Main API class that uses aiohttp's ClientSession for HTTP communication
-  - Uses async context manager pattern (`async with Cbox.connected_to(host)`)
-  - All API methods are async and raise exceptions on failure
+  - Uses async context manager pattern (`async with Cbox.connected_to(host)`), which owns and closes its session
+  - `Cbox(session, host)` uses an external session (e.g. Home Assistant's shared one) and never closes it
+  - All API methods are async; failures raise `CboxConnectionError` or `CboxCommandError` (both `CboxError`),
+    invalid arguments raise `ValueError`
+  - Every request goes through `_send(cmd)` with a timeout (10s by default)
   - Endpoint: `/cgi-bin/sendmsg.lua` with query parameter `cmd`
 
 - `CboxInfo`: Dataclass representing the state of the device (temperatures, setpoints, status, firmware info)
   - Includes factory method `from_dict()` to parse API responses
   - Custom `__repr__()` returns JSON representation
 
-- `StoveStatus`: Enum of device operational states (OFF, BURNING, HEATUP, various alarms)
-- `FanStatus`: Enum of fan speed settings (OFF, SPEED_1-5, HIGH, AUTO)
+- `StoveStatus`: Enum of device operational states (OFF, BURNING, HEATUP, various alarms); unknown codes map to
+  `UNKNOWN`, the raw code is kept in `CboxInfo.rawStatus` and `CboxInfo.is_alarm` flags codes >= 241
+- `FanStatus`: Enum of fan speed settings (OFF, SPEED_1-5, HIGH, AUTO); unknown codes map to `UNKNOWN`
 
 **API Methods:**
 - `fetch_info()`: Gets complete device state via `GET ALLS` command
@@ -125,7 +129,7 @@ All I/O operations are async using:
 
 ## Python Version
 
-This project requires Python 3.13 or higher. The CI pipeline tests against Python 3.13.
+This project requires Python 3.14 or higher (as Home Assistant does). The CI pipeline tests against Python 3.14.
 
 ## Project Structure
 

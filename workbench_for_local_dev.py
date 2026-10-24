@@ -2,13 +2,13 @@ import asyncio
 import logging
 import sys
 
-from connbox.connbox import Cbox, FanStatus
+from connbox.connbox import Cbox
 
 
 async def main():
     # Configure the logger to be verbose with the cbox module
     logging.basicConfig(stream=sys.stdout, level=logging.INFO)
-    logging.getLogger("cbox.connbox").setLevel(logging.DEBUG)
+    logging.getLogger("connbox.connbox").setLevel(logging.DEBUG)
 
     # Define your cbox host (could be an ip address like 192.168.0.14)
     host: str = "connbox"
@@ -24,7 +24,7 @@ async def main():
         # print(await cbox.get_info('MDVE'))
         # print(await cbox.bkp())
         # Change cbox settings
-        # await cbox.change_status(Cbox.Status.OFF)
+        # await cbox.power_off()
         # await cbox.change_fan_setpoint(FanStatus.AUTO)
         # await cbox.change_temperature_setpoint(19)
         # await cbox.change_power_setpoint(4)
