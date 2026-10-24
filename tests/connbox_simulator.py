@@ -1,7 +1,9 @@
-from aiohttp import web
-from enum import Enum
 import re
-from connbox.connbox import CboxInfo, StoveStatus, FanStatus
+from enum import Enum
+
+from aiohttp import web
+
+from connbox.connbox import CboxInfo, FanStatus, StoveStatus
 
 
 class CboxSimulator:
@@ -102,10 +104,8 @@ class CboxSimulator:
         return web.json_response({"SUCCESS": True})
 
     def __simulate_command_temperature_setpoint(self, temperature: int) -> web.Response:
-        if temperature < 12:
-            temperature = 12
-        if temperature > 51:
-            temperature = 51
+        temperature = max(temperature, 12)
+        temperature = min(temperature, 51)
         self.cboxInfo.temperatureSetpoint = temperature
         return web.json_response({"SUCCESS": True})
 

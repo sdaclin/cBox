@@ -1,4 +1,3 @@
-import asyncio
 import json
 import logging
 from dataclasses import dataclass, field
@@ -127,7 +126,7 @@ class CboxInfo:
         )
 
     @staticmethod
-    def from_dict(response: dict) -> "CboxInfo":
+    def from_dict(response: dict) -> CboxInfo:
         data = response["DATA"]
         return CboxInfo(
             timestamp=datetime.fromtimestamp(response["INFO"]["TS"]),
@@ -236,7 +235,7 @@ class Cbox:
                 if response.status != 200:
                     raise CboxConnectionError(f"Got unexpected response status {response.status} for {cmd}")
                 response_json = await response.json(content_type=None)
-        except (ClientError, TimeoutError, asyncio.TimeoutError, json.JSONDecodeError) as err:
+        except (ClientError, TimeoutError, json.JSONDecodeError) as err:
             raise CboxConnectionError(f"Error while sending {cmd}: {err!r}") from err
         if not isinstance(response_json, dict) or response_json.get("SUCCESS") is not True:
             raise CboxCommandError(f"Request response is not SUCCESS => {json.dumps(response_json)}")

@@ -16,6 +16,6 @@ __all__ = [
     "CboxConnectionError",
     "CboxError",
     "CboxInfo",
-    "StoveStatus",
     "FanStatus",
+    "StoveStatus",
 ]

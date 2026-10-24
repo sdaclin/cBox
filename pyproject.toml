@@ -1,16 +1,16 @@
 [build-system]
-requires = ["uv_build>=0.9.4,<0.10.0"]
+requires = ["uv_build>=0.13.5,<0.14.0"]
 build-backend = "uv_build"
 
 [project]
 name = "connbox"
 version = "0.1.1"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 description = "This is a service to connect and interact with a connbox for Pellet stoves (Palazzetti, Jotul)"
 readme = "README.md"
 license = { file = "LICENSE" }
 dependencies = [
-    "aiohttp>=3.10.8",
+    "aiohttp>=3.13.3",
 ]
 authors = [
     { name = "Sylvain Daclin" }
@@ -20,7 +20,7 @@ classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Topic :: Home Automation",
 ]
 
@@ -33,13 +33,13 @@ find = { where = ["src"] }
 
 [dependency-groups]
 dev = [
-    "coverage>=7.6.4",
-    "pytest>=8.4.2",
-    "pytest-aiohttp>=1.0.5",
-    "pytest-asyncio>=0.24",
+    "coverage>=7.17.0",
+    "pytest>=9.1.1",
+    "pytest-aiohttp>=1.1.1",
+    "pytest-asyncio>=1.4.0",
 ]
 lint = [
-    "ruff>=0.14.0",
+    "ruff>=0.17.2",
 ]
 
 [tool.ruff]

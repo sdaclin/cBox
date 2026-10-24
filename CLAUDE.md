@@ -129,7 +129,7 @@ All I/O operations are async using:
 
 ## Python Version
 
-This project requires Python 3.13 or higher. The CI pipeline tests against Python 3.13.
+This project requires Python 3.14 or higher (as Home Assistant does). The CI pipeline tests against Python 3.14.
 
 ## Project Structure
 

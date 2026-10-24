@@ -15,7 +15,7 @@ This project provides an API to interact through http with a `Connection Box` (a
 
 ## How to
 
-Check your python installation, `python 3.13.+` is required
+Check your python installation, `python 3.14.+` is required
 
 ```sh
 python --version
@@ -25,17 +25,17 @@ Start playing around => check [workbench for local dev](workbench_for_local_dev.
 
 ```python
 async with Cbox.connected_to(host) as cbox:
-  # Fetch current cbox info
-  print(await cbox.fetch_info())
+    # Fetch current cbox info
+    print(await cbox.fetch_info())
 
-  # Change cbox settings
-  await cbox.power_off()
-  await cbox.change_fan_setpoint(FanStatus.AUTO)
-  await cbox.change_temperature_setpoint(19)
-  await cbox.change_power_setpoint(4)
+    # Change cbox settings
+    await cbox.power_off()
+    await cbox.change_fan_setpoint(FanStatus.AUTO)
+    await cbox.change_temperature_setpoint(19)
+    await cbox.change_power_setpoint(4)
 
-  # Fetch changed cbox info
-  print(await cbox.fetch_info())
+    # Fetch changed cbox info
+    print(await cbox.fetch_info())
 ```
 
 If you already manage an `aiohttp.ClientSession` (e.g. in Home Assistant), give it to the `Cbox` along with the host,
