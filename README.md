@@ -29,7 +29,7 @@ async with Cbox.connected_to(host) as cbox:
   print(await cbox.fetch_info())
 
   # Change cbox settings
-  await cbox.change_status(Cbox.Status.OFF)
+  await cbox.power_off()
   await cbox.change_fan_setpoint(FanStatus.AUTO)
   await cbox.change_temperature_setpoint(19)
   await cbox.change_power_setpoint(4)
@@ -37,6 +37,17 @@ async with Cbox.connected_to(host) as cbox:
   # Fetch changed cbox info
   print(await cbox.fetch_info())
 ```
+
+If you already manage an `aiohttp.ClientSession` (e.g. in Home Assistant), give it to the `Cbox` along with the host,
+it will be used as is and won't be closed:
+
+```python
+cbox = Cbox(session, host)
+info = await cbox.fetch_info()
+```
+
+Errors are reported with `CboxConnectionError` (device unreachable, timeout, bad HTTP response) and `CboxCommandError`
+(command rejected by the device), both inheriting from `CboxError`.
 
 Here is the output
 

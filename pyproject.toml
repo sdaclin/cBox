@@ -4,17 +4,18 @@ build-backend = "uv_build"
 
 [project]
 name = "connbox"
-version = "0.1.0"
+version = "0.1.1"
 requires-python = ">=3.13"
 description = "This is a service to connect and interact with a connbox for Pellet stoves (Palazzetti, Jotul)"
 readme = "README.md"
 license = { file = "LICENSE" }
+dependencies = [
+    "aiohttp>=3.10.8",
+]
 authors = [
     { name = "Sylvain Daclin" }
 ]
 keywords = ["pellet", "stove", "connbox", "palazzetti", "jotul", "fumis", "iot"]
-homepage = "https://github.com/sdaclin/cbox"
-repository = "https://github.com/sdaclin/cbox"
 classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
@@ -23,12 +24,12 @@ classifiers = [
     "Topic :: Home Automation",
 ]
 
+[project.urls]
+Homepage = "https://github.com/sdaclin/cbox"
+Repository = "https://github.com/sdaclin/cbox"
+
 [project.packages]
 find = { where = ["src"] }
-
-dependencies = [
-    "aiohttp>=3.10.8",
-]
 
 [dependency-groups]
 dev = [
